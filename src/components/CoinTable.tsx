@@ -2,20 +2,22 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronUp, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { mockCoins, Coin } from '@/data/mockData';
+import { useCryptoDataContext } from '@/contexts/CryptoDataContext';
+import { CoinData } from '@/hooks/useCryptoData';
 import Sparkline from './Sparkline';
 
 const ITEMS_PER_PAGE = 20;
 
 const CoinTable: React.FC = () => {
   const { t } = useLanguage();
+  const { coins, isLoading: dataLoading } = useCryptoDataContext();
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [sortBy, setSortBy] = useState<keyof Coin>('rank');
+  const [sortBy, setSortBy] = useState<keyof CoinData>('rank');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   const sortedCoins = useMemo(() => {
-    return [...mockCoins].sort((a, b) => {
+    return [...coins].sort((a, b) => {
       const aVal = a[sortBy];
       const bVal = b[sortBy];
       if (typeof aVal === 'number' && typeof bVal === 'number') {
@@ -26,12 +28,12 @@ const CoinTable: React.FC = () => {
       }
       return 0;
     });
-  }, [sortBy, sortOrder]);
+  }, [coins, sortBy, sortOrder]);
 
   const displayedCoins = sortedCoins.slice(0, currentPage * ITEMS_PER_PAGE);
-  const hasMore = displayedCoins.length < mockCoins.length;
+  const hasMore = displayedCoins.length < coins.length;
 
-  const handleSort = (column: keyof Coin) => {
+  const handleSort = (column: keyof CoinData) => {
     if (sortBy === column) {
       setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc');
     } else {
@@ -42,8 +44,7 @@ const CoinTable: React.FC = () => {
 
   const loadMore = async () => {
     setIsLoading(true);
-    // Simulate loading delay
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 300));
     setCurrentPage(prev => prev + 1);
     setIsLoading(false);
   };
@@ -62,10 +63,13 @@ const CoinTable: React.FC = () => {
     if (price >= 1) {
       return `$${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
-    return `$${price.toFixed(6)}`;
+    if (price >= 0.0001) {
+      return `$${price.toFixed(6)}`;
+    }
+    return `$${price.toFixed(10)}`;
   };
 
-  const SortIcon = ({ column }: { column: keyof Coin }) => {
+  const SortIcon = ({ column }: { column: keyof CoinData }) => {
     if (sortBy !== column) return null;
     return sortOrder === 'asc' ? (
       <ChevronUp className="w-3 h-3" />
@@ -79,7 +83,7 @@ const CoinTable: React.FC = () => {
     label, 
     className = '' 
   }: { 
-    column: keyof Coin; 
+    column: keyof CoinData; 
     label: string; 
     className?: string;
   }) => (
@@ -93,6 +97,18 @@ const CoinTable: React.FC = () => {
       </div>
     </th>
   );
+
+  if (dataLoading) {
+    return (
+      <div className="w-full">
+        <div className="space-y-2">
+          {[...Array(10)].map((_, i) => (
+            <div key={i} className="h-14 bg-secondary/30 rounded animate-pulse" />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
@@ -182,7 +198,6 @@ const CoinTable: React.FC = () => {
         </table>
       </div>
 
-      {/* Load More Button */}
       {hasMore && (
         <div className="flex justify-center mt-8">
           <button

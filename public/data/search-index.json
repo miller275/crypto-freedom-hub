@@ -1,0 +1,22 @@
+[
+  {"id": "bitcoin", "cmcId": 1, "name": "Bitcoin", "symbol": "BTC", "rank": 1},
+  {"id": "ethereum", "cmcId": 1027, "name": "Ethereum", "symbol": "ETH", "rank": 2},
+  {"id": "tether", "cmcId": 825, "name": "Tether", "symbol": "USDT", "rank": 3},
+  {"id": "bnb", "cmcId": 1839, "name": "BNB", "symbol": "BNB", "rank": 4},
+  {"id": "solana", "cmcId": 5426, "name": "Solana", "symbol": "SOL", "rank": 5},
+  {"id": "xrp", "cmcId": 52, "name": "XRP", "symbol": "XRP", "rank": 6},
+  {"id": "cardano", "cmcId": 2010, "name": "Cardano", "symbol": "ADA", "rank": 7},
+  {"id": "dogecoin", "cmcId": 74, "name": "Dogecoin", "symbol": "DOGE", "rank": 8},
+  {"id": "avalanche-2", "cmcId": 5805, "name": "Avalanche", "symbol": "AVAX", "rank": 9},
+  {"id": "chainlink", "cmcId": 1975, "name": "Chainlink", "symbol": "LINK", "rank": 10},
+  {"id": "polkadot-new", "cmcId": 6636, "name": "Polkadot", "symbol": "DOT", "rank": 11},
+  {"id": "polygon", "cmcId": 3890, "name": "Polygon", "symbol": "MATIC", "rank": 12},
+  {"id": "litecoin", "cmcId": 2, "name": "Litecoin", "symbol": "LTC", "rank": 13},
+  {"id": "shiba-inu", "cmcId": 5994, "name": "Shiba Inu", "symbol": "SHIB", "rank": 14},
+  {"id": "uniswap", "cmcId": 7083, "name": "Uniswap", "symbol": "UNI", "rank": 15},
+  {"id": "cosmos", "cmcId": 3794, "name": "Cosmos", "symbol": "ATOM", "rank": 16},
+  {"id": "stellar", "cmcId": 512, "name": "Stellar", "symbol": "XLM", "rank": 17},
+  {"id": "monero", "cmcId": 328, "name": "Monero", "symbol": "XMR", "rank": 18},
+  {"id": "toncoin", "cmcId": 11419, "name": "Toncoin", "symbol": "TON", "rank": 19},
+  {"id": "multi-collateral-dai", "cmcId": 4943, "name": "Dai", "symbol": "DAI", "rank": 20}
+]

@@ -1,0 +1,67 @@
+name: Update Crypto Data
+
+on:
+  schedule:
+    # Run every hour
+    - cron: '0 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch CoinMarketCap Data
+        env:
+          CMC_PRO_API_KEY: ${{ secrets.CMC_PRO_API_KEY }}
+        run: |
+          mkdir -p public/data
+          
+          # Fetch listings (top 500 coins)
+          curl -s -H "X-CMC_PRO_API_KEY: $CMC_PRO_API_KEY" \
+            "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=500&convert=USD" \
+            -o public/data/listings.json
+          
+          # Fetch global metrics
+          curl -s -H "X-CMC_PRO_API_KEY: $CMC_PRO_API_KEY" \
+            "https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest" \
+            -o public/data/global.json
+          
+          # Fetch Fear & Greed Index (alternative.me free API)
+          curl -s "https://api.alternative.me/fng/?limit=1" \
+            -o public/data/fear-greed.json
+          
+          # Create coins map for search (id -> basic info)
+          node -e "
+            const listings = require('./public/data/listings.json');
+            if (listings.data) {
+              const searchIndex = listings.data.map(coin => ({
+                id: coin.slug,
+                cmcId: coin.id,
+                name: coin.name,
+                symbol: coin.symbol,
+                rank: coin.cmc_rank
+              }));
+              require('fs').writeFileSync('./public/data/search-index.json', JSON.stringify(searchIndex));
+            }
+          "
+          
+          # Create timestamp
+          echo "{\"updated_at\": \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\"}" > public/data/meta.json
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add public/data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update crypto data $(date -u +"%Y-%m-%d %H:%M UTC")" && git push)
