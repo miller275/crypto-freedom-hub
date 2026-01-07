@@ -19,30 +19,27 @@ const NewsTicker: React.FC = () => {
 
   return (
     <div>
-      <h3 className="text-sm font-medium text-muted-foreground mb-4">{t('news.title')}</h3>
-      <div className="space-y-3">
+      <h3 className="text-xs font-medium text-muted-foreground mb-2">{t('news.title')}</h3>
+      <div className="space-y-1">
         {mockNews.slice(0, 4).map((news) => (
           <a
             key={news.id}
             href={news.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-start gap-3 p-3 rounded-xl hover:bg-secondary/30 transition-all group"
+            className="flex items-center gap-2 py-1.5 px-2 rounded-lg hover:bg-secondary/30 transition-all group"
           >
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+              <h4 className="text-xs font-medium text-foreground line-clamp-1 group-hover:text-primary transition-colors">
                 {news.title}
               </h4>
-              <div className="flex items-center gap-2 mt-1.5 text-xs text-muted-foreground">
-                <span>{news.source}</span>
-                <span>•</span>
-                <div className="flex items-center gap-1">
-                  <Clock className="w-3 h-3" />
-                  {formatTime(news.publishedAt)}
-                </div>
-              </div>
             </div>
-            <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-1" />
+            <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground flex-shrink-0">
+              <span>{news.source}</span>
+              <span>•</span>
+              <span>{formatTime(news.publishedAt)}</span>
+            </div>
+            <ExternalLink className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
           </a>
         ))}
       </div>
