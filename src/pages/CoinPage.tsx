@@ -1,19 +1,20 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Globe, Twitter, MessageCircle, Star, TrendingUp, TrendingDown } from 'lucide-react';
+import { ArrowLeft, Globe, Twitter, MessageCircle, TrendingUp, TrendingDown } from 'lucide-react';
 import Header from '@/components/Header';
 import TradingViewChart from '@/components/TradingViewChart';
-import Sparkline from '@/components/Sparkline';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
-import { mockCoins } from '@/data/mockData';
+import { useCryptoDataContext } from '@/contexts/CryptoDataContext';
 
 const CoinPage: React.FC = () => {
   const { coinId } = useParams<{ coinId: string }>();
   const { t } = useLanguage();
   const { theme } = useTheme();
+  const { coins } = useCryptoDataContext();
 
-  const coin = mockCoins.find(c => c.id === coinId);
+  // Find coin by slug (id field matches the URL coinId)
+  const coin = coins.find(c => c.id === coinId);
 
   if (!coin) {
     return (
