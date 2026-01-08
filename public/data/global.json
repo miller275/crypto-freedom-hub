@@ -1,14 +1,1 @@
-{
-  "data": {
-    "active_cryptocurrencies": 23456,
-    "btc_dominance": 52.4,
-    "eth_dominance": 12.8,
-    "quote": {
-      "USD": {
-        "total_market_cap": 3250000000000,
-        "total_volume_24h": 142000000000,
-        "total_market_cap_yesterday_percentage_change": 2.34
-      }
-    }
-  }
-}
+{"status":{"timestamp":"2026-01-08T01:26:19.987Z","error_code":0,"error_message":null,"elapsed":26,"credit_count":1,"notice":null},"data":{"active_cryptocurrencies":8899,"total_cryptocurrencies":36876,"active_market_pairs":117489,"active_exchanges":913,"total_exchanges":11696,"eth_dominance":12.231901201512,"btc_dominance":58.283783487676,"eth_dominance_yesterday":12.37299545,"btc_dominance_yesterday":58.18034908,"eth_dominance_24h_percentage_change":-0.141094248488,"btc_dominance_24h_percentage_change":0.103434407676,"defi_volume_24h":13708684104.220968,"defi_volume_24h_reported":41464408816.59481,"defi_market_cap":78104994932.39377,"defi_24h_percentage_change":-15.993848797246,"stablecoin_volume_24h":104347215479.25925,"stablecoin_volume_24h_reported":575779922532.7952,"stablecoin_market_cap":286681314368.48676,"stablecoin_24h_percentage_change":-22.469815540391,"derivatives_volume_24h":1060913657611.4122,"derivatives_volume_24h_reported":1102728721647.1074,"derivatives_24h_percentage_change":-22.588617331289,"total_crypto_dex_currencies":29552552,"today_incremental_crypto_number":101,"past_24h_incremental_crypto_number":58614,"past_7d_incremental_crypto_number":305083,"past_30d_incremental_crypto_number":1462564,"today_change_percent":0.000358684354,"tracked_yearly_number":{"maxIncrementalNumber":1305553,"minIncrementalNumber":106,"maxIncrementalDate":"2025-07-08T00:00:00.000Z","minIncrementalDate":"2026-01-07T00:00:00.000Z"},"quote":{"USD":{"total_market_cap":3129757111310.8403,"total_volume_24h":106338350790.07,"total_volume_24h_reported":586202530796.28,"altcoin_volume_24h":65488560857.26544,"altcoin_volume_24h_reported":380090807872.259,"altcoin_market_cap":1305616252864.2993,"defi_volume_24h":13708684104.220968,"defi_volume_24h_reported":41464408816.59481,"defi_24h_percentage_change":-15.993848797246,"defi_market_cap":78104994932.39377,"stablecoin_volume_24h":104347215479.25925,"stablecoin_volume_24h_reported":575779922532.7952,"stablecoin_24h_percentage_change":-22.469815540391,"stablecoin_market_cap":286681314368.48676,"derivatives_volume_24h":1060913657611.4122,"derivatives_volume_24h_reported":1102728721647.1074,"derivatives_24h_percentage_change":-22.588617331289,"total_market_cap_yesterday":3175556557491.794,"total_volume_24h_yesterday":137245323886.22,"total_market_cap_yesterday_percentage_change":-1.4422494246844195,"total_volume_24h_yesterday_percentage_change":-22.519509022961458,"last_updated":"2026-01-08T01:23:59.999Z"}},"last_updated":"2026-01-08T01:23:59.999Z"}}
