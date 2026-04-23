@@ -1,1 +1,9 @@
-{"status":{"timestamp":"2026-04-22T23:42:36.368Z","error_code":1002,"error_message":"API key missing.","elapsed":0,"credit_count":0,"notice":null}}
+{
+    "status": {
+        "timestamp": "2026-04-23T02:24:56.944Z",
+        "error_code": 1002,
+        "error_message": "API key missing.",
+        "elapsed": 0,
+        "credit_count": 0
+    }
+}
