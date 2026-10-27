@@ -2,10 +2,10 @@
 	"name": "Fear and Greed Index",
 	"data": [
 		{
-			"value": "50",
+			"value": "48",
 			"value_classification": "Neutral",
-			"timestamp": "1792972800",
-			"time_until_update": "9690"
+			"timestamp": "1793059200",
+			"time_until_update": "82517"
 		}
 	],
 	"metadata": {
